@@ -3,32 +3,47 @@ function Popup(options) {
     this._init();
     this._bindEvent();
 };
+/*
+parentDom
+title
+content
+showSureOption
+showCancelOption
+callbackEvent
+ */
 Popup.prototype={
     _init:function(options){
-        var opt=this.options;
-        opt.parentDom=opt.parentDom?opt.parentDom:document.getElementsByTagName('body')[0];
-        opt.title=opt.title?opt.title:"";
-        opt.content=opt.content?opt.content:"";
         opt.showSureOption=opt.showSureOption?opt.showSureOption:1;
         opt.showCancelOption=opt.showCancelOption?opt.showCancelOption:1;
         opt.callbackEvent=opt.callbackEvent?opt.callbackEvent:function () {};
-        var str='<h4 id="layer_title">'+opt.title+'</h4>'+'<div class="layer_content" id="layer_content">'+opt.content
-            +'</div>'+'<div class="layer_btn_wrap">';
-        if(opt.showSureOption===1){
-            str += '<span class="layer_btn" id="sure">确定</span>';
-        }
-        if(opt.showCancelOption===1){
-            str += '<span class="layer_btn" id="cancel">取消</span>';
-        }
-        str += '</div>';
+
+        var shade = options.shade ? '<div class="layer_shade"></div>';
+
+        var title = options.title ? '<h4 id="layer_title">'+ options.title+'</h4>' : '';
+
+        var btns = (function() {
+            if (!options.btns) return '';
+            var btndom = '<span class="layer_btn">' + btns[0] || '确定' + '</span>';
+            if (options.btns.length === 2) btndom += '<span class="layer_btn">' + btns[1] || '取消' + '</span>';
+            return '<div class="layer_btns">' + btndom + '</div>'
+        }());
+
+        var container = shade+
+        '<div class="layer_container">'+
+            title+
+            '<div class="layer_content" id="layer_content">'+
+                options.content+
+            '</div>'+
+            btns+
+        '</div>';
 
         var layer = document.createElement('div');
-        layer.style.display='none';
-        layer.className='layer';
-        layer.innerHTML=str;
+        layer.style.display = 'none';
+        layer.className = 'layer';
+        layer.innerHTML = container;
         // var script = document.getElementsByTagName('script')[0];
         // opt.parentDom.insertBefore(layer,script);
-        opt.parentDom.appendChild(layer);
+        document.body.appendChild(layer);
         this.layer = layer;
     },
     _bindEvent: function() {
