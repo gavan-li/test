@@ -2,59 +2,40 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Document</title>
-	<link rel="stylesheet" href="reset.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="./style.css">
 </head>
 <body>
-	<header class="header">
-		<div class="w clearfix">
-			<div class="logo clearfix">
-				<a href="">home</a>
-				<button id="toggle">〓</button>
-			</div>
-			<div class="nav-content clearfix">
-				<ul class="nav-list fr clearfix">
-					<li>导航四</li>
-					<li>导航五</li>
-					<li>导航六</li>
-				</ul>
-			</div>
-		</div>
-	</header>
+	<button id="open">弹窗</button>
 
-	<div class="container">
-		<div>
-			<div class="container-left">
-				<div class="image-box"><img src="http://17301642.s21i.faiusr.com/2/ABUIABACGAAgw7Lq6gUowMG55QUwwCE4oBY!500x500.jpg" alt=""></div>
-			</div>
-		</div>
-		<div>
-			<div class="container-right">
-				<h4 class="text-title">这是一级标题</h4>
-				<p class="text-main">帕拓逊是国内A股上市企业跨境通（A股代码：002640）的全资子公司，以“点靓每个人的生活”为使命，为全球个人及家庭提供高品质的消费类产品，在全球拥有超100项专利、商标等自主知识产权，客户遍布全球30多个国家和地区, 在全世界范围内建立了3个海外营销中心、4个国内订单执行中心、15个海外订单执行中心，致力于打造世界级的中国品牌，让中国创造的高价值产品惠及全球用户。</p>
-			</div>
+	<div class="profile-dialog-box">
+		<div class="profile-dialog">
+			<img src="" alt="">
+			<h3>Welcome to Holife VIP Club!</h3>
+			<p class="profile-dialog-content"><span>15% OFF</span> Amazon Code was sent to the E-mail that you provided.</p>
+			<button class="profile-dialog-submit">ok</button>
 		</div>
 	</div>
 </body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="./layer.js"></script>
 <script>
-	var data = {
-		flag: false
-	};
-	var plugins = {
-		getDom: function(elem) {
-			return document.querySelector(elem);
-		}
-	};
-	(function() {
-		var btn = plugins.getDom('#toggle');
-		var navContent = plugins.getDom('.nav-content');
-
-		btn.onclick = function() {
-			data.flag = !data.flag;
-			data.flag ? navContent.style.display='block' : navContent.style.display='none';
-		}
-	})()
+	$(function() {
+		$('#open').on('click', function() {
+			layer.open({
+			  type: 1,
+			  title: false,
+			  closeBtn: 0,
+			  time: 3000,
+			  content: $(".profile-dialog-box"),
+			  success: function(dom, index) {
+			  	$('.profile-dialog-submit').on('click', function() {
+			  		layer.close(index);
+			  	})
+			  }
+			});
+		})
+	})
 </script>
 </html>

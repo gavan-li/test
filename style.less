@@ -1,118 +1,70 @@
-.header {
-  width: 100%;
-  border-bottom: 1px solid #ddd;
-	.logo {
-		float: left;
-	  height: 40px;
-	  line-height: 40px;
-	  > a {
-	  	float: left;
-	  	padding: 0 20px;
-	  }
-	  > button {
-	  	display: none;
-	  	vertical-align: middle;
-	  }
-	}
-	.nav-list > li {
-	  height: 40px;
-	  width: 88px;
-	  line-height: 40px;
-	  float: left;
-	  padding-left: 20px;
-	  box-sizing: border-box;
-	}
-}
+@w: 100vw/750;
 
-.container {
-	width: 100%;
+* {
+	margin: 0;
+	padding: 0;
+}
+.profile-dialog-box {
+	display: none;
+}
+.profile-dialog {
+	width: 500px;
+	padding: 40px 0;
 	display: flex;
-	justify-content: flex-start;
-	> div {
-		flex: 1;
-		height: 420px;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 0px 2px 10px rgba(0,0,0,0.16);
+	> img {
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		background-color: #24CB9D;
+		margin-bottom: 28px;
 	}
-	.container-left {
-		width: 100%;
-		height: 100%;
-		box-sizing: border-box;
-		padding: 6%;
-		.image-box {
-			width: 100%;
-			height: 100%;
-			text-align: center;
-			> img {
-				max-width: 100%;
-				max-height: 100%;
-			}
+	> h3 {
+		font-weight: normal;
+		font-size: 20px;
+		color: #2C7CE9;
+		text-align: center;
+		margin-bottom: 7px;
+	}
+	.profile-dialog-content {
+		font-size: 14px;
+		color: #848484;
+		margin-bottom: 35px;
+		> span {
+			font-size: 14px;
+			font-weight: bold;
+			color: #2C7CE9;
 		}
 	}
-	.container-right {
-		width: 100%;
-		height: 100%;
-		box-sizing: border-box;
-		padding: 13% 0 0 13%;
-		.text-title {
-			font-size: 20px;
-			margin-bottom: 3%;
-		}
-		.text-main {
-			font-size: 15px;
-			line-height: 28px;
-			width: 400px;
-		}
+	.profile-dialog-submit {
+		width: 260px;
+		height: 40px;
+		margin: 0 auto;
+		text-align: center;
+		color: #fff;
+		font-size: 16px;
+		border: none;
+		outline: none;
+		background-color: #2C7CE9;
 	}
 }
 
-@media (min-width: 1200px) {
-  .w {width: 1170px;}
-  .nav-content {
-    display: block !important;
-  }
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-  .w {width: 962px;}
-  .nav-content {
-    display: block !important;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .w {width: 738px;}
-  .nav-content {
-    display: block !important;
-  }
-  .container .container-right .text-main {
-    width: 320px;
-  }
-}
 @media (max-width: 767px) {
-  .header {
-    border-bottom: none;
-    .nav-content {
-	    display: none;
-	  }
-  }
-  .w {
-    width: 100%;
-  }
-  .nav-list {
-    width: 100%;
-    > li {
-    	width: 100%;
-    	border-bottom: 1px solid #ddd;
-    }
-  }
-  .logo {
-    float: none;
-    border-bottom: 1px solid #ddd;
-    > button {
-    	float: right;
-	    display: inline;
-	    margin-right: 20px;
-	    margin-top: 9px;
-    }
-  }
-  .container .container-right .text-main {
-    width: 340px;
-  }
+	.profile-dialog {
+		width: 710*@w;
+		padding: 80*@w 40*@w;
+		box-sizing: border-box;
+		> h3 {
+			font-size: 18px;
+		}
+		.profile-dialog-content {
+			text-align: center;
+		}
+		.profile-dialog-submit {
+			width: 520*@w;
+			height: 80*@w;
+		}
+	}
 }
