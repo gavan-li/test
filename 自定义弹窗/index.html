@@ -24,9 +24,20 @@
 <script src="./layer.js"></script>
 <script>
 	$(function() {
-		var html = $('.profile-dialog-box').html()
-		console.log(html)
-		$('#box').html(html)
+		$('#open').on('click', function() {
+			layer.open({
+			  type: 1,
+			  title: false,
+			  closeBtn: 0,
+			  time: 3000,
+			  content: $(".profile-dialog-box"),
+			  success: function(dom, index) {
+			  	$('.profile-dialog-submit').on('click', function() {
+			  		layer.close(index);
+			  	})
+			  }
+			});
+		})
 	})
 </script>
 </html>
