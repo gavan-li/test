@@ -17,25 +17,16 @@
 			<button class="profile-dialog-submit">ok</button>
 		</div>
 	</div>
+
+	<div class="" id="box"></div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="./layer.js"></script>
 <script>
 	$(function() {
-		$('#open').on('click', function() {
-			layer.open({
-			  type: 1,
-			  title: false,
-			  closeBtn: 0,
-			  time: 3000,
-			  content: $(".profile-dialog-box"),
-			  success: function(dom, index) {
-			  	$('.profile-dialog-submit').on('click', function() {
-			  		layer.close(index);
-			  	})
-			  }
-			});
-		})
+		var html = $('.profile-dialog-box').html()
+		console.log(html)
+		$('#box').html(html)
 	})
 </script>
 </html>
