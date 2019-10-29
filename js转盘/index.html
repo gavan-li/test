@@ -63,14 +63,26 @@
 <script src="./rotate.js"></script>
 <script type="text/javascript">
 var rotate = new Rotate({
-    outEl: document.getElementById('outer')
+    outEl: document.getElementById('outer'),
+    section: {
+        a: '-15~15', 
+        b: '108~137',
+        c: '225~255',
+        d: '16~107',
+        e: '138~224',
+        f: '256~345'
+    }
 })
 
 $("#inner").on('click', function() {
     rotate.start();
     
+    var prizeArr = ['a','b','c','d','e','f'];
+    var prizeNum = parseInt(Math.random()*prizeArr.length)
+    console.log(prizeArr[prizeNum]);
+
     setTimeout(function() {
-        rotate.end(30);
+        rotate.end(prizeArr[prizeNum]);
     }, 3000);
 })
 
@@ -83,8 +95,8 @@ $(function () {
     })();
     var totalDeg = 0;
     var steps = [];
-    /* var lostDeg = [36, 66, 96, 156, 186, 216, 276, 306, 336];
-    var prizeDeg = [6, 126, 246]; */
+     var lostDeg = [36, 66, 96, 156, 186, 216, 276, 306, 336];
+    var prizeDeg = [6, 126, 246]; 
     var prize, sncode;
     var count = 0;
     var now = 0;
@@ -128,8 +140,8 @@ $(function () {
         running = true;
         clearInterval(timer);
         totalDeg = 360 * 5 + deg;
-        // steps = [];
-        // now = 0;
+        steps = [];
+        now = 0;
         countSteps();
         requestAnimFrame(step)
     }
@@ -147,7 +159,6 @@ $(function () {
             alert("亲，你不能再参加本次活动了喔！下次再来吧~");
             return
         } */
-        start(15);
         $.ajax({
             url: "index.php",
             dataType: "json",
