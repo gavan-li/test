@@ -62,6 +62,18 @@
 <script src="./images/jquery.js" type="text/javascript"></script>
 <script src="./rotate.js"></script>
 <script type="text/javascript">
+var rotate = new Rotate({
+    outEl: document.getElementById('outer')
+})
+
+$("#inner").on('click', function() {
+    rotate.start();
+    
+    setTimeout(function() {
+        rotate.end(30);
+    }, 3000);
+})
+
 $(function () {
     window.requestAnimFrame = (function () {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
@@ -125,7 +137,7 @@ $(function () {
     outter = document.getElementById('outer');
     inner = document.getElementById('inner');
     i = 10;
-    $("#inner").click(function () {
+    $("#inner1").click(function () {
         if (running) return;
         /* if (count >= 3) {
             alert("您已经抽了 3 次奖。");
@@ -136,7 +148,7 @@ $(function () {
             return
         } */
         start(15);
-        /*$.ajax({
+        $.ajax({
             url: "index.php",
             dataType: "json",
             data: {
@@ -187,7 +199,7 @@ $(function () {
                 count++
             },
             timeout: 4000
-        })*/
+        })
     })
 });
 $("#save-btn").bind("click", function () {
