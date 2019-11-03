@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>jQuery手机页面随机抽奖代码 - 站长素材</title>
+<style type="text/css">
+	.qimo8{ overflow:hidden;}
+	.qimo8 .qimo {/*width:99999999px;*/width:8000%;}
+	.qimo8 .qimo div{ float:left;}
+	.qimo8 .qimo ul{float:left;overflow:hidden; zoom:1; }
+	.qimo8 .qimo ul li{float:left; list-style:none; font-size: 24px;margin: 0 1rem;}
+</style>
+<link rel="stylesheet" type="text/css" href="css/styleCJ.css"/>
+<script src="js/common.js"></script>
+</head>
+<body>
+<!-- 代码 开始 -->
+<div class="shanDeng" id="deng">
+	<div id="luck"><!-- luck -->
+		<table style="border-spacing:.08rem .03rem;">
+			<tr>
+				<td class="luck-unit luck-unit-0 active"><img src="./img/01.png"></td>
+				<td class="luck-unit luck-unit-1"><img src="./img/02.png"></td>
+				<td class="luck-unit luck-unit-2"><img src="./img/03.png"></td>
+			</tr>
+			<tr>
+				<td class="luck-unit luck-unit-7"><img src="./img/05.png"></td>
+				<td class="cjBtn" id="btn"></td>
+				<td class="luck-unit luck-unit-3"><img src="./img/01.png"></td>
+			</tr>
+			<tr>
+				<td class="luck-unit luck-unit-6"><img src="./img/02.png"></td>
+				<td class="luck-unit luck-unit-5"><img src="./img/04.png"></td>
+				<td class="luck-unit luck-unit-4"><img src="./img/03.png"></td>
+			</tr>
+		</table>
+	</div><!-- luckEnd -->
+</div>
+<script src="./roll.js"></script>
+<script>
+	var roll = new Roll({class: 'luck-unit-'});
+	var btn = document.getElementById('btn');
+	var flag = true;
+
+	btn.addEventListener('click', function() {
+		if(!flag) return;
+		roll.start();
+		flag = false;
+
+		var prize = parseInt(Math.random()*7);
+		console.log(prize)
+		setTimeout(function() {
+			roll.stop(prize, function() {
+				flag = true;
+				console.log(prize+'等奖');
+			})
+		}, 2000)
+	})
+
+	// roll.start();
+</script>
+<!-- <script>
+	var index = 0;
+	var inter = null;
+	var count = 0;
+	var prize = 0;
+	function getElement(query) {
+		return document.querySelector(query);
+	}
+
+	function roll() {
+		// var firstEl = document.querySelector('.luck-unit'+index)
+		inter = setInterval(function() {
+			// $(".luck-unit-"+index).removeClass('active')
+			getElement(".luck-unit-"+index).classList.remove('active');
+			index = ++index > 7 ? 0 : index;
+			// $(".luck-unit-"+index).addClass('active')
+			getElement(".luck-unit-"+index).classList.add('active');
+		}, 70)
+	}
+
+	function stop() {
+		clearInterval(inter);
+		animate()
+	}
+
+	function step() {
+		count++
+		$(".luck-unit-"+index).removeClass('active')
+		if (++index > 7) {
+			index = 0
+		}
+		$(".luck-unit-"+index).addClass('active')
+		if (count < 16 - prize) {
+			animate()
+		} else {
+			if (index !== prize) animate()
+		}
+	}
+
+	function animate() {
+		setTimeout(function() {
+			step()
+		}, 100 + 1.2*count*count)
+	}
+
+	$("#btn").on('click', function() {
+		count = 0;
+		prize = parseInt(Math.random()*7);
+		console.log(prize)
+		roll();
+
+		setTimeout(function() {
+			stop()
+		}, 500)
+	})
+</script> -->
+</body>
+</html>

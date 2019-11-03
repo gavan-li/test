@@ -23,7 +23,7 @@
       config.timer = setInterval(function () {
         i += 4;
         config.outEl.style.webkitTransform = 'rotate3d(0,0,1,'+i+'deg)';
-      }, 5)
+      }, 8)
     },
     end: function(prize) {
       var config = this.options;
@@ -52,7 +52,7 @@
       config.steps.push(totalDeg)
     },
     animCallback: function(callback) {
-      setTimeout(callback.bind(this), 6)
+      setTimeout(callback.bind(this), 8)
     },
     step: function() {
       var config = this.options;
@@ -67,13 +67,11 @@
     },
     getPrize: function(type) {
       //type必填
-      var section = this.options.section[type],
-          pareceRate = section.split('~'),
-          minRate = parseInt(pareceRate[0]),
-          maxRate = parseInt(pareceRate[1]);
+      var section = this.options.section[type];
+      if (section.length === 1) return parseInt(section[0]);
+      var minRate = parseInt(section[0]),
+          maxRate = parseInt(section[1]);
       return parseInt(Math.random()*(maxRate-minRate+1)+minRate, 10);
-      /*if (!type ) {return parseInt(Math.random()*360+1, 10);
-      } else {}*/
     }
   }
 
