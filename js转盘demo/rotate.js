@@ -18,9 +18,10 @@
       config.running = true;
       
       config.timer = setInterval(function () {
-        i += 4;
+        i += 10;
+        if (i >= 360) i = 0;
         config.outEl.style.webkitTransform = 'rotate3d(0,0,1,'+i+'deg)';
-      }, 5)
+      }, 25)
     },
     end: function(prize, endCall) {
       var config = this.options;
@@ -67,10 +68,11 @@
     },
     getPrize: function(type) {
       //type必填
-      var section = this.options.section[type],
-          pareceRate = section.split('~'),
-          minRate = parseInt(pareceRate[0]),
-          maxRate = parseInt(pareceRate[1]);
+      var section = this.options.section[type];
+          if (section.length === 1) return parseInt(section[0])
+          // pareceRate = section.split('~'),
+      var minRate = parseInt(section[0]),
+          maxRate = parseInt(section[1]);
       return parseInt(Math.random()*(maxRate-minRate+1)+minRate, 10);
     }
   }

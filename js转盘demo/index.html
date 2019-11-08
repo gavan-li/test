@@ -24,12 +24,12 @@
     var rotate = new Rotate({
         outEl: document.getElementById('outer'),
         section: {
-            a: '-15~15', //一等奖
-            b: '108~137', //二等奖
-            c: '225~255', //三等奖
-            d: '16~107', //没中
-            e: '138~224', //没中
-            f: '256~345' //没中
+            a: [-15, 15], //一等奖
+            b: [108, 137], //二等奖
+            c: [245], //三等奖
+            d: [16, 107], //没中
+            e: [138, 224], //没中
+            f: [256, 345] //没中
         }
     })
 
@@ -42,13 +42,13 @@
         rotate.start();  //开始旋转
         flag = true;
 
-        setTimeout(function() {
+        /*setTimeout(function() {
             var result = getPrize(input.value);
             // console.log(result)
             rotate.end(result, function() { //停止旋转，传入获奖结果（section.key）| 旋转停止后的回调函数
                 flag = false;
             });  
-        }, 3000);
+        }, 3000);*/
     });
 
     function getPrize(value) {

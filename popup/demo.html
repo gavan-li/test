@@ -1,69 +1,36 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <script src="https://cdn.shopify.com/s/files/1/0249/2891/1420/files/vue.dev.js?106541"></script>
-    <script src="./popup.js"></script>
     <link rel="stylesheet" type="text/css" href="./popup.css" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
   <body>
+    <header>这是头部</header>
     <div id="app" class="black-friday">
-        <botton type="button" @click="dialogVisible = true">Show</botton>
-        <!-- 弹出框 -->
+        <div>给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给 给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给 给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给 给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给 给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给 给hi哦减减肥 京东iiiiiiiiiiii人但如果迥然大概 京东例如达科他狗日的 的肌肉敌人水水水水水水水的软件哦都给</div>
+        <button class="btn" @click="dialogVisible = true">Show</button>
+        弹出框
         <common-popup class="login-popup" :visible.sync="dialogVisible">
             <div class="content" slot="content">
-               <botton class="button" type="button" @click="dialogVisible = false">clone</botton>
+               <button class="button" @click="dialogVisible = false">clone</button>
             </div>
         </common-popup>
     </div>
   </body>
+  <script src="https://cdn.shopify.com/s/files/1/0249/2891/1420/files/vue.dev.js?106541"></script>
+  <script src="./popup.js"></script>
   <script>
-    var apiUrl = "";
     new Vue({
-    el: '#app',
-    delimiters: ['${', '}'],
-    data: {
-        qaIndex: 0,
-        dialogVisible: false,
-    },
-    created() {
-        this.getInit();
-    },
-    computed: {
-        style() {
-          let style = {};
-          if (this.width) {
-            style.width = this.width;
-          }
-          if (!this.fullscreen) {
-            style.marginTop = this.top;
-          }
-          return style;
-        }
-    },
-    watch : {
-        visible(val) {
-          if (val) {
-            // this.closed = false;
-            this.$nextTick(() => {
-              this.$refs.dialog.scrollTop = 0;
-            });
-          } else {
-            document.body.style.height = 'inherit';
-            document.body.style.overflow = 'inherit';
-          }
-        }
+      el: '#app',
+      delimiters: ['${', '}'],
+      data: {
+          qaIndex: 0,
+          dialogVisible: false,
       },
-    mounted() {
-        if (this.visible) {
-          this.rendered = true;
-          document.body.style.height = '100%';
-          document.body.style.overflow = 'hidden';
-        }
+      mounted() {
       },
-    methods: {
-        getInit() {
-        }
-    }
+      methods: {
+      }
     })
   </script>
 </html>
