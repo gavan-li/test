@@ -16,13 +16,13 @@
 
 			options.count = 0;
 			options.timer = setInterval(function() {
-				_this.getElement('.' + options.class + options.index).classList.remove('active');
+				_this.getElement('.' + options.class + options.index).classList.remove(options.active);
 				options.index = ++options.index > 7 ? 0 : options.index;
-				_this.getElement(".luck-unit-"+options.index).classList.add('active');
+				_this.getElement(".luck-unit-"+options.index).classList.add(options.active);
 			}, 70)
 		},
 		stop: function(prize, callback) {
-			if (!prize) throw new Error('parize不能为空');
+			if (!prize && typeof prize == 'undefined') throw new Error('parize不能为空');
 			
 			this.options.prize = prize;
 			callback && (this.options.endBack = callback);
@@ -35,7 +35,7 @@
 
 			setTimeout(function() {
 				_this.step()
-			}, 100 + 1.2*count*count)
+			}, 100 + 1.3*count*count)
 		},
 		getElement: function(query) {
 			return document.querySelector(query);
@@ -44,9 +44,9 @@
 			var options = this.options;
 
 			options.count++;
-			this.getElement(".luck-unit-"+options.index).classList.remove('active');
+			this.getElement('.' + options.class + options.index).classList.remove(options.active);
 			if (++options.index > 7) options.index = 0
-			this.getElement(".luck-unit-"+options.index).classList.add('active');
+			this.getElement('.' + options.class + options.index).classList.add(options.active);
 			if (options.count < 16 - options.prize) {
 				this.asyncBack();
 			} else {

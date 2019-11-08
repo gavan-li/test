@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>jQuery手机页面随机抽奖代码 - 站长素材</title>
 <style type="text/css">
 	.qimo8{ overflow:hidden;}
 	.qimo8 .qimo {/*width:99999999px;*/width:8000%;}
@@ -12,7 +11,7 @@
 	.qimo8 .qimo ul li{float:left; list-style:none; font-size: 24px;margin: 0 1rem;}
 </style>
 <link rel="stylesheet" type="text/css" href="css/styleCJ.css"/>
-<script src="js/common.js"></script>
+<script src="./common.js"></script>
 </head>
 <body>
 <!-- 代码 开始 -->
@@ -39,82 +38,27 @@
 </div>
 <script src="./roll.js"></script>
 <script>
-	var roll = new Roll({class: 'luck-unit-'});
+	var roll = new Roll({
+		class: 'luck-unit-',
+		active: 'active'
+	});
 	var btn = document.getElementById('btn');
 	var flag = true;
 
 	btn.addEventListener('click', function() {
 		if(!flag) return;
-		roll.start();
+		roll.start(); //开始滚动
 		flag = false;
 
 		var prize = parseInt(Math.random()*7);
 		console.log(prize)
 		setTimeout(function() {
-			roll.stop(prize, function() {
+			roll.stop(prize, function() {  //停止滚动，第一个参数为获奖结果（1-7）顺时针对应每个奖品；第二个参数为动画停止后的回调函数；
 				flag = true;
 				console.log(prize+'等奖');
 			})
-		}, 2000)
+		}, 100)
 	})
-
-	// roll.start();
 </script>
-<!-- <script>
-	var index = 0;
-	var inter = null;
-	var count = 0;
-	var prize = 0;
-	function getElement(query) {
-		return document.querySelector(query);
-	}
-
-	function roll() {
-		// var firstEl = document.querySelector('.luck-unit'+index)
-		inter = setInterval(function() {
-			// $(".luck-unit-"+index).removeClass('active')
-			getElement(".luck-unit-"+index).classList.remove('active');
-			index = ++index > 7 ? 0 : index;
-			// $(".luck-unit-"+index).addClass('active')
-			getElement(".luck-unit-"+index).classList.add('active');
-		}, 70)
-	}
-
-	function stop() {
-		clearInterval(inter);
-		animate()
-	}
-
-	function step() {
-		count++
-		$(".luck-unit-"+index).removeClass('active')
-		if (++index > 7) {
-			index = 0
-		}
-		$(".luck-unit-"+index).addClass('active')
-		if (count < 16 - prize) {
-			animate()
-		} else {
-			if (index !== prize) animate()
-		}
-	}
-
-	function animate() {
-		setTimeout(function() {
-			step()
-		}, 100 + 1.2*count*count)
-	}
-
-	$("#btn").on('click', function() {
-		count = 0;
-		prize = parseInt(Math.random()*7);
-		console.log(prize)
-		roll();
-
-		setTimeout(function() {
-			stop()
-		}, 500)
-	})
-</script> -->
 </body>
 </html>

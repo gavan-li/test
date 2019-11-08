@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,inital-scale=1.0,user-scalable=no">
+<link href="./images/activity-style.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: #2a8a00">
+<div class="main">
+    <div class="outercont">
+    	<div class="outer-cont">
+    		<div id="outer"><img src="./images/activity-lottery-1.png" width="310px"></div>
+    	</div>
+    	<div class="inner-cont">
+    	   <div id="inner"><img src="./images/activity-lottery-2.png"></div>
+    	</div>
+    </div>
+    
+    <div class="input-box">
+        <label for="">结果：</label><input type="text" id="input" placeholder="输入1/2/3(一/二/三等奖)不输不中奖">
+    </div>
+</div>
+<script src="./rotate.js"></script>
+<script type="text/javascript">
+    var rotate = new Rotate({
+        outEl: document.getElementById('outer'),
+        section: {
+            a: '-15~15', //一等奖
+            b: '108~137', //二等奖
+            c: '225~255', //三等奖
+            d: '16~107', //没中
+            e: '138~224', //没中
+            f: '256~345' //没中
+        }
+    })
+
+    var flag = false;
+    var inner = document.getElementById('inner');
+    var input = document.getElementById('input');
+
+    inner.addEventListener('click', function() {
+        if (flag) return;
+        rotate.start();  //开始旋转
+        flag = true;
+
+        setTimeout(function() {
+            var result = getPrize(input.value);
+            // console.log(result)
+            rotate.end(result, function() { //停止旋转，传入获奖结果（section.key）| 旋转停止后的回调函数
+                flag = false;
+            });  
+        }, 3000);
+    });
+
+    function getPrize(value) {
+        var prizeArr = ['d','e','f'];
+        var prizeNum = parseInt(Math.random()*prizeArr.length);
+        switch(value) {
+            case '1':
+                return 'a'
+            case '2':
+                return 'b'
+            case '3':
+                return 'c'
+            default:
+                return prizeArr[prizeNum]
+        }
+    }
+</script>
+</body>
+</html>

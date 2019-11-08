@@ -1,0 +1,40 @@
+ .popup-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+} 
+.popup-wrapper .popup-content {
+  position: relative;
+  top: 10%;
+  /* right: 0;
+  bottom: 0;
+  left: 0; */
+  margin: 0 auto;
+  width: -webkit-fit-content;
+  height: -webkit-fit-content;
+  z-index: 99;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.popup-wrapper .popup-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #000;
+  z-index: 88;
+}
+
+.dialog-fade-enter-active, .dialog-fade-leave-active {
+  transition: opacity .5s;
+}
+.dialog-fade-enter, .dialog-fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.content {
+	height: 1500px;
+	width: 300px;
+	background: #fff;
+}

@@ -4,16 +4,13 @@
       steps: [],
       running: false,
       timer: null,
+      endCall: null,
+      prize: null
       // outEl: document.getElementById('outer')
     };
     this.options = Object.assign(options, config);
-    // this.countSteps();
   }
   Rotate.prototype = {
-    /*init: function() {
-      this.countSteps();
-      this.animCallback(this.step);
-    },*/
     start: function() {
       var config = this.options,
           i = 10;
@@ -23,15 +20,17 @@
       config.timer = setInterval(function () {
         i += 4;
         config.outEl.style.webkitTransform = 'rotate3d(0,0,1,'+i+'deg)';
-      }, 8)
+      }, 5)
     },
-    end: function(prize) {
+    end: function(prize, endCall) {
       var config = this.options;
+      config.prize = prize;
+      endCall && (config.endCall = endCall);
       //重置
       config.now = 0;
       config.steps = [];
 
-      this.countSteps(prize);
+      this.countSteps();
       // 设置停止角度
       config.timer && clearInterval(config.timer);
 
@@ -39,8 +38,8 @@
     },
     // 组装step算法
     countSteps: function(prize) {
-      var deg = this.getPrize(prize);
       var config = this.options,
+          deg = this.getPrize(config.prize),
           totalDeg = 360 * 3 + deg,
           a = 0.01,
           t = Math.sqrt(2 * totalDeg / a),
@@ -52,7 +51,7 @@
       config.steps.push(totalDeg)
     },
     animCallback: function(callback) {
-      setTimeout(callback.bind(this), 8)
+      setTimeout(callback.bind(this), 6)
     },
     step: function() {
       var config = this.options;
@@ -63,14 +62,15 @@
         this.animCallback(this.step);
       } else {
         config.running = false;
+        config.endCall && config.endCall.call(this);
       }
     },
     getPrize: function(type) {
       //type必填
-      var section = this.options.section[type];
-      if (section.length === 1) return parseInt(section[0]);
-      var minRate = parseInt(section[0]),
-          maxRate = parseInt(section[1]);
+      var section = this.options.section[type],
+          pareceRate = section.split('~'),
+          minRate = parseInt(pareceRate[0]),
+          maxRate = parseInt(pareceRate[1]);
       return parseInt(Math.random()*(maxRate-minRate+1)+minRate, 10);
     }
   }
