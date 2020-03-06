@@ -21,10 +21,13 @@
 				_this.getElement(".luck-unit-"+options.index).classList.add(options.active);
 			}, 70)
 		},
-		stop: function(prize, callback) {
+		stop: function(id, callback) {
 			if (!prize && typeof prize == 'undefined') throw new Error('parize不能为空');
-			
-			this.options.prize = prize;
+			var obj = this.options.list.find(item => {
+		        if (!id) return item.name == 'No luck today'
+		        return id == item.id
+		    })
+			this.options.prize = item.unit;
 			callback && (this.options.endBack = callback);
 			this.options.timer && clearInterval(this.options.timer);
 			this.asyncBack();
