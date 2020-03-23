@@ -17,63 +17,12 @@
 	<div id="outer"></div>
 </body>
 <script>
-	function searchChild(domlist, result) {
-		domlist.forEach(dom => {
-			if (dom.type === 3) {
-				if (dom.child) {
-					searchChild(dom.child, result)
-				} else {
-					if (dom.class == 'trf') {
-						console.log(dom)
-						result = dom;
-						return;
-					}
-				}
-			}
-		})
-		return result;
-	}
-
-	var domlists = [
-		{type: 1},
-		{type: 2},
-		{type: 3, class: 'trf'},
-		{type: 3, child: [
-			{type: 1},
-			{type: 2},
-			{type: 3, child: [
-				{type: 3, child: [
-					{type: 1},
-					{type: 2},
-					{type: 3, class: 'gegf'}
-				]}
-			]},
-		]},
-		/*{type: 1},
-		{type: 3, child: [
-			{type: 1},
-			{type: 2},
-			{type: 3, child: [
-				{type: 1},
-				{type: 3, child: [
-					{type: 3, class: 'gegf'},
-					{type: 3, class: 'hgred'},
-					{type: 3, class: 'hr', child: [
-						{type: 1},
-						{type: 2, child: [
-							{type: 1},
-							{type: 2},
-							{type: 3, class: 'gegf'}
-						]},
-						{type: 3, class: 'target'},
-					]},
-				]},
-				{type: 3, class: 'hr'}
-			]},
-		]}*/
-	]
-
-	var aa = searchChild(domlists)
-	console.log(aa)
+	var outer = document.querySelector('#outer')
+	var i = 10;
+	setInterval(function () {
+    i += 10;
+    if (i >= 360) i = 0;
+    outer.style.webkitTransform = 'rotate3d(0,0,1,'+i+'deg)';
+  }, 50)
 </script>
 </html>
