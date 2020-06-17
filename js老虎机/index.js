@@ -3,54 +3,97 @@ var getDom = function(elem) {
 }
 
 var step = -100;
-var firstLi = getDom('.first');
-var secondLi = getDom('.second');
-var thirdLi = getDom('.third');
+var firstLi = getDom('.luck-list.first');
+var secondLi = getDom('.luck-list.second');
+var thirdLi = getDom('.luck-list.third');
+
+var firstExLi = getDom('.luck-exist.first');
+var secondExLi = getDom('.luck-exist.second');
+var thirdExLi = getDom('.luck-exist.third');
+
 var firstStop = getDom('#btn1');
 var secondStop = getDom('#btn2');
 var thirdStop = getDom('#btn3');
+
 var startBtn = getDom('#start');
+var resetBtn = getDom('#reset');
 var product = [
-	{id: 0, name: 'product01'},
-	{id: 1, name: 'product02'},
-	{id: 2, name: 'product03'},
-	{id: 3, name: 'product04'},
-	{id: 4, name: 'product05'},
-	{id: 5, name: 'product06'}
+	{id: 0, name: 'prod01'},
+	{id: 1, name: 'prod02'},
+	{id: 2, name: 'prod03'},
+	{id: 3, name: 'prod04'},
+	{id: 4, name: 'prod05'},
+	{id: 5, name: 'prod06'}
 ]
 var len = product.length;
+var flags = [false, false, false];
+var count = 0;
 
 // 初始化计算list高度
-addKeyFrames(step*len+'px')
+// addKeyFrames(step*len+'px')
 
 startBtn.addEventListener('click', function() {
-	firstLi.style.animationPlayState = 'running'
-	secondLi.style.animationPlayState = 'running'
-	thirdLi.style.animationPlayState = 'running'
+	if (count > 0) return
+	flags = [true, true, true];
+
+	firstLi.style.animationName = 'rowup'
+	secondLi.style.animationName = 'rowup'
+	thirdLi.style.animationName = 'rowup'
+})
+
+resetBtn.addEventListener('click', function() {
+	if (count < 3) return
+	count = 0;
+	flags = [false, false, false];
+
+	firstLi.style.display = 'block';
+	secondLi.style.display = 'block';
+	thirdLi.style.display = 'block';
+	firstExLi.style.display = 'none';
+	secondExLi.style.display = 'none';
+	thirdExLi.style.display = 'none';
 })
 
 firstStop.addEventListener('click', function() {
+	// if (!flags[0]) return;
+	// flags[0] = false;
+	// count++;
+
 	var arr = getPrizeIndex(firstLi);
-	console.log(arr)
 	firstLi.style.animationPlayState = 'paused'
-	createHtml(arr)
-	// $result.innerHTML = ulHtm
-	// $list.setAttribute('style', 'animation: none; transform: translateY('+moveY+'px)')
+	// firstLi.setAttribute('style', 'display: none; animation-name: none;')
+	// firstExLi.innerHTML = createHtml(arr);
+	// firstExLi.style.display = 'block';
 })
 
 secondStop.addEventListener('click', function() {
-	secondLi.style.animationPlayState = 'paused'
+	if (!flags[1]) return;
+	flags[1] = false;
+	count++;
+
+	var arr = getPrizeIndex(secondLi);
+	secondLi.setAttribute('style', 'display: none; animation-name: none;')
+	secondExLi.innerHTML = createHtml(arr);
+	secondExLi.style.display = 'block';
 })
 
 thirdStop.addEventListener('click', function() {
-	thirdLi.style.animationPlayState = 'paused'
+	if (!flags[2]) return;
+	flags[2] = false;
+	count++;
+
+	var arr = getPrizeIndex(thirdLi);
+	thirdLi.setAttribute('style', 'display: none; animation-name: none;')
+	thirdExLi.innerHTML = createHtml(arr);
+	thirdExLi.style.display = 'block';
 })
 
 function createHtml(arr) {
-	var productArr = []
+	var productHtml = ''
 	arr.forEach(item => {
-		productArr.push(product[item])
+		productHtml += '<li>'+product[item].name+'</li>'
 	})
+	return productHtml
 }
 
 // 获得中奖奖品ID

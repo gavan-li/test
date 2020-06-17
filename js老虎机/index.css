@@ -25,27 +25,29 @@
 }
 .luck-list {
 	list-style: none;
-	animation-name: rowup;
+	/*animation-name: rowup;*/
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 	animation-fill-mode: forwards; 
 }
+.luck-exist {
+	list-style: none;
+	display: none;
+}
+.luck-exist.shock {
+	animation: shock 0.5s;
+}
 .luck-list.first {
-	/*animation-name: rowup;*/
-	animation-play-state: paused;
-	animation-duration: 2.4s;
+	animation-duration: 2s;
 }
 .luck-list.second {
-	/*animation-name: rowup;*/
-	animation-play-state: paused;
-	animation-duration: 1.8s;
+	animation-duration: 1.6s;
 }
 .luck-list.third {
-	/*animation-name: rowup;*/
-	animation-play-state: paused;
 	animation-duration: 1.2s;
 }
-.luck-list > li {
+.luck-list > li,
+.luck-exist > li {
 	width: 100%;
 	height: 100px;
 	text-align: center;
@@ -63,4 +65,33 @@
 .luck-bottom > button {
 	width: 100px;
 	height: 50px;
+}
+@keyframes rowup {
+    0% {}
+    100% {transform: translate3d(0, calc(-100% + 300px), 0);}
+}
+@keyframes shock {
+	0%,
+    20%,
+    53%,
+    80%,
+    to {
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        transform: translateZ(0)
+    }
+    30% {
+        animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+        transform: translate3d(0, -18px, 0)
+    }
+    55% {
+        animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+        transform: translate3d(0, 15px, 0)
+    }
+    70% {
+        animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+        transform: translate3d(0, -8px, 0)
+    }
+    90% {
+        transform: translate3d(0, 5px, 0)
+    }
 }
