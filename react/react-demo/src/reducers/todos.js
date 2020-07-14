@@ -1,12 +1,13 @@
-export default (state, action) => {
+export default (state = [], action) => {
+	console.log(action)
 	switch(action.type) {
 		case 'ADD_TODO':
 			return [
 				...state,
 				{
 					id: action.id,
-			        text: action.text,
-			        completed: false
+			    text: action.text,
+			    completed: false
 				}
 			]
 		case 'TOGGLE_TODO':

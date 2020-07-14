@@ -1,7 +1,6 @@
-// import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import Demo1 from './view/demo1.jsx';
+import Demo1 from './view/demo1/index.jsx';
 
 function App() {
   return (
