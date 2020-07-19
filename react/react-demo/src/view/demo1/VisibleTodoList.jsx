@@ -1,5 +1,6 @@
+import React from 'react'
 import { connect } from 'react-redux'
-import { toggleTodo } from '../actions'
+import { toggleTodo } from '../../actions/todo'
 
 const getVisibleTodos = (todos, filter) => {
   	switch (filter) {
@@ -9,25 +10,29 @@ const getVisibleTodos = (todos, filter) => {
 	      return todos.filter(t => !t.completed)
 	    case 'SHOW_ALL':
 	    default:
-      	return todos
+      		return todos
   	}
 }
 
-const TodoList = ({ todos, onTodoClick }) => (
-  	<ul>
-	    {todos.map(todo => (
-	      	<Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
-	    ))}
-  	</ul>
-)
-
+const TodoList = ({todos, dispatch}) => {
+	return (
+		<ul>
+		  {todos.map(todo => (
+			  <li key={todo.id}
+				  onClick={() => dispatch(toggleTodo(todo.id))}
+				  style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>
+				  {todo.text}
+			  </li>
+		  ))}
+		</ul>
+  	)
+}
 const mapStateToProps = state => {
 	return {
-	    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+	  todos: getVisibleTodos(state.todos, state.visibilityFilter)
 	}
 }
 
-export default connect({
-	mapStateToProps,
-  	mapDispatchToProps
-})(TodoList);
+export default connect(
+	mapStateToProps
+)(TodoList);
