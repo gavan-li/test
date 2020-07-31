@@ -23,6 +23,12 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.todo-list {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  list-style: none;
+}
 
 .App-link {
   color: #61dafb;

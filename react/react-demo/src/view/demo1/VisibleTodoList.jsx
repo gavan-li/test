@@ -16,7 +16,7 @@ const getVisibleTodos = (todos, filter) => {
 
 const TodoList = ({todos, dispatch}) => {
 	return (
-		<ul>
+		<ul className="todo-list">
 		  {todos.map(todo => (
 			  <li key={todo.id}
 				  onClick={() => dispatch(toggleTodo(todo.id))}
