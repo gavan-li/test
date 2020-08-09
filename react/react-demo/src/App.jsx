@@ -1,11 +1,18 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Demo1 from './view/demo1/index.jsx';
+import Demo2 from './view/demo2/index.jsx';
 
 function App() {
   return (
     <div className="App">
-      <Demo1 />
+      <Router>
+        <Switch>
+          <Route path="/demo1"><Demo1 /></Route>
+          <Route path="/demo2"><Demo2 /></Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

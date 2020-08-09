@@ -20,3 +20,10 @@ export const toggleTodo = id => {
     id
   }
 }
+
+export const goodsTodo = data => {
+  return {
+    type: 'ADD_GOODS',
+    data
+  }
+}

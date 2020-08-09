@@ -6,7 +6,7 @@ import VisibleTodoList from './VisibleTodoList.jsx'
 export default () => (
 	<div>
 		<AddTodo />
-	    <VisibleTodoList />
-	    <Footer />
+		<VisibleTodoList />
+		<Footer />
 	</div>
 )

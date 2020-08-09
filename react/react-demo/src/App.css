@@ -7,12 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -29,16 +23,17 @@
   text-align: center;
   list-style: none;
 }
-
 .App-link {
   color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-item {
+  margin-bottom: 10px;
+}
+.form-btn {
+  width: 100px;
+}
+.form-err {
+  line-height: 1;
+  margin: 0;
+  color: red
 }
