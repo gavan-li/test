@@ -35,5 +35,14 @@
 .form-err {
   line-height: 1;
   margin: 0;
-  color: red
+  color: red;
+}
+.goods-table {
+  width: 30%;
+  margin: 40px auto;
+}
+.bug-num {
+  display: inline-block;
+  width: 24px;
+  text-align: center
 }

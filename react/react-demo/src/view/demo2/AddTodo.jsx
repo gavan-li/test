@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { goodsTodo } from '../../actions/todo'
+let indexId = 0
 
 class AddTodo extends Component {
   constructor(props) {
     super(props)
+    const form = this.formater()
     this.state = {
-      form: {},
+      form,
       valitor: ''
+    }
+  }
+
+  formater = () => {
+    return {
+      name: `good${++indexId}`,
+      price: (Math.random()*100).toFixed(2),
+      stock: Math.ceil(Math.random()*12),
+      number: 0
     }
   }
 
@@ -27,25 +38,38 @@ class AddTodo extends Component {
     } else if (!stock || !/^(\d+)$/.test(stock)) {
       this.setState({valitor: '请输入正确的库存'})
     } else {
-      this.setState({valitor: ''})
       this.props.goodsTodo(this.state.form)
+      this.setState({valitor: ''})
+      this.setState({
+        form: this.formater()
+      })
     }
   }
 
   render() {
+    const {name, price, stock} = this.state.form
     return (
       <form className="form-wrap" onSubmit={e => e.preventDefault()}>
         <div className="form-item">
           <label>物品：</label>
-          <input type="text" onChange={e => this.changeHandle('name', e.target.value)} />
+          <input
+            type="text"
+            value={name}
+            onChange={e => this.changeHandle('name', e.target.value)} />
         </div>
         <div className="form-item">
           <label>价格：</label>
-          <input type="text" onChange={e => this.changeHandle('price', e.target.value)} />
+          <input
+            type="text"
+            value={price}
+            onChange={e => this.changeHandle('price', e.target.value)} />
         </div>
         <div className="form-item">
           <label>库存：</label>
-          <input type="text" onChange={e => this.changeHandle('stock', e.target.value)} />
+          <input
+            type="text"
+            value={stock}
+            onChange={e => this.changeHandle('stock', e.target.value)} />
         </div>
         <div className="form-item">
           <button className="form-btn" onClick={this.submitHandle}>确定</button>

@@ -22,8 +22,17 @@ export const toggleTodo = id => {
 }
 
 export const goodsTodo = data => {
+  data.id = nextTodoId++
   return {
     type: 'ADD_GOODS',
     data
+  }
+}
+
+export const setCars = (flag, id) => {
+  return {
+    type: 'SET_CARS',
+    flag,
+    id
   }
 }
