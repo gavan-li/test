@@ -36,3 +36,17 @@ export const setCars = (flag, id) => {
     id
   }
 }
+
+export const toggleCheck = id => {
+  return {
+    type: 'TOGGLE_CHECK',
+    id
+  }
+}
+
+export const toggleAllCheck = flag => {
+  return {
+    type: 'TOGGLE_ALL_CHECK',
+    flag
+  }
+}

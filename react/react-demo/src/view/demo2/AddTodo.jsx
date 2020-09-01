@@ -18,7 +18,8 @@ class AddTodo extends Component {
       name: `good${++indexId}`,
       price: (Math.random()*100).toFixed(2),
       stock: Math.ceil(Math.random()*12),
-      number: 0
+      number: 0,
+      check: false
     }
   }
 
