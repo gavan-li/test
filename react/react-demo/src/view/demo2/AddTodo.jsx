@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { goodsTodo } from '../../actions/todo'
+import { fetchPosts } from '../../actions/ajax'
 let indexId = 0
 
 class AddTodo extends Component {
@@ -30,6 +31,7 @@ class AddTodo extends Component {
   }
 
   submitHandle = () => {
+    // this.props.fetchPosts()
     const { name='', price='', stock='' } = this.state.form
     const rex = /^(\d+|\d+\.\d{1,2})$/
     if (!name) {
@@ -82,7 +84,8 @@ class AddTodo extends Component {
 }
 
 const mapDispatchToProps = {
-  goodsTodo
+  goodsTodo,
+  fetchPosts
 }
 
 export default connect(null, mapDispatchToProps)(AddTodo)
